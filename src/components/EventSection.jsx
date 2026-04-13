@@ -173,7 +173,7 @@ const EventSection = () => {
                 {category}
                 <span className="hidden md:block h-px w-24 bg-gradient-to-l from-transparent to-primary/60" />
               </h3>
-              <div className="flex flex-wrap justify-center gap-8 md:gap-12 px-4 max-w-[1200px] mx-auto w-full">
+              <div className="flex flex-wrap justify-center gap-10 lg:gap-16 px-4 max-w-[1300px] mx-auto w-full">
                 {categoryEvents.map((e, i) => (
                   <motion.div
                     key={`${e.number}-${i}`}
