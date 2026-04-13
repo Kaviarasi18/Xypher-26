@@ -105,15 +105,33 @@ const EventDetail = ({ event, onBack }) => {
             {event.detailDescription}
           </motion.p>
 
-          {/* Tagline */}
-          <motion.p
-            className="font-rajdhani text-primary italic text-lg mb-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.5 }}>
-            
-            {event.detailTagline}
-          </motion.p>
+          {/* Details Grid */}
+          {event.details && (
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.65, duration: 0.5 }}>
+              {event.details.map((detail, idx) => (
+                <div key={idx} className="flex flex-col border border-primary/20 bg-background/50 backdrop-blur-sm p-3 rounded-sm border-glow">
+                  <span className="font-rajdhani text-xs uppercase tracking-widest text-primary/70 mb-1">{detail.label}</span>
+                  <span className="font-rajdhani text-base md:text-lg text-foreground">{detail.value}</span>
+                </div>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Tagline - rendered if it exists */}
+          {event.detailTagline && (
+            <motion.p
+              className="font-rajdhani text-primary italic text-lg mb-10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.75, duration: 0.5 }}>
+              
+              {event.detailTagline}
+            </motion.p>
+          )}
 
           {/* Continue button */}
           <motion.button

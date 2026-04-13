@@ -6,86 +6,122 @@ import EventDetail from "./EventDetail";
 import SmokeEffect from "./SmokeEffect";
 
 const events = [
-{
-  number: "I",
-  label: "Capture The Flag",
-  title: "Cyber CTF",
-  description: "Solve cybersecurity challenges in cryptography, web security, and forensics",
-  backDescription: "A fast-paced hacking competition testing real-world security skills.",
-  detailTitle: "Capture The Flag",
-  detailDescription: "Duration: 6 hours | Team Size: 3–4 | Expected Teams: 20",
-  detailTagline: "₹250 / ₹300 • Prize ₹6000"
-},
-{
-  number: "II",
-  label: "Technical",
-  title: "UI Blindfolded",
-  description: "One designs, one codes — without seeing the UI",
-  backDescription: "A communication-heavy UI challenge testing accuracy and teamwork.",
-  detailTitle: "Building UI Blindfolded",
-  detailDescription: "Duration: 3 hours | Team Size: 2 | Expected Teams: 20",
-  detailTagline: "₹125 / ₹175 • Prize ₹2500"
-},
-{
-  number: "III",
-  label: "Technical",
-  title: "Project Expo",
-  description: "Showcase innovative real-world technical projects",
-  backDescription: "Present your ideas and compete with practical implementations.",
-  detailTitle: "Project Expo",
-  detailDescription: "Duration: 3 hours | Expected Teams: 20",
-  detailTagline: "₹175 / ₹150 • Prize ₹3000"
-},
-{
-  number: "IV",
-  label: "Workshop",
-  title: "Power BI Workshop",
-  description: "Learn to build dashboards and insights using Power BI",
-  backDescription: "Hands-on session on data visualization and analytics.",
-  detailTitle: "Data Visualization using Power BI",
-  detailDescription: "Duration: 2 hours | Expected Participants: 150 | Speaker: Alumni",
-  detailTagline: "Free / ₹50"
-},
-{
-  number: "V",
-  label: "Technical",
-  title: "Mystery Tech Auction",
-  description: "Bid for tools and build under constraints",
-  backDescription: "Strategy meets development in this unique auction-based challenge.",
-  detailTitle: "Mystery Tech Auction",
-  detailDescription: "Duration: 6 hours | Team Size: 2–3 | Expected Teams: 15",
-  detailTagline: "₹250 / ₹300 • Prize ₹6000"
-},
-{
-  number: "VI",
-  label: "Technical",
-  title: "Technical Treasure Hunt",
-  description: "Solve clues and puzzles across multiple stages",
-  backDescription: "A fun and challenging technical hunt testing logic and teamwork.",
-  detailTitle: "Technical Treasure Hunt",
-  detailDescription: "Duration: 3 hours | Team Size: 2–3 | Expected Teams: 15",
-  detailTagline: "₹250 / ₹300 • Prize ₹2500"
-},
-{
-  number: "VII",
-  label: "Technical",
-  title: "App Development",
-  description: "Build real-world applications solving practical problems",
-  backDescription: "Design and develop functional apps under constraints.",
-  detailTitle: "App Development",
-  detailDescription: "Team Size: 2–3 | Expected Teams: 20",
-  detailTagline: "₹125 / ₹175 • Prize ₹2500"
-},
-{
-  number: "VIII",
-  label: "Workshop",
-  title: "DevOps Workshop",
-  description: "Learn CI/CD, deployment, and DevOps fundamentals",
-  backDescription: "Practical introduction to modern development workflows.",
-  detailTitle: "DevOps Workshop",
-  detailDescription: "Duration: 2 hours | Expected Participants: 150 | Speaker: Alumni",
-  detailTagline: "Free / ₹50"
-}
+  {
+    number: "I",
+    label: "CTF",
+    title: "Cyber CTF",
+    description: "Solve cybersecurity challenges in cryptography, web security, and forensics",
+    detailTitle: "Capture The Flag",
+    detailDescription: "A fast-paced hacking competition testing real-world security skills.",
+    details: [
+      { label: "Duration", value: "6 hours" },
+      { label: "Team Size", value: "3-4 members" },
+      { label: "Registration Fee", value: "₹250 (IEEE) / ₹300 (Non-IEEE)" },
+      { label: "Expected Teams", value: "20" },
+      { label: "Prize Pool", value: "₹6000" }
+    ]
+  },
+  {
+    number: "II",
+    label: "Technical",
+    title: "UI Blindfolded",
+    description: "One designs verbally, one codes blindly — testing communication and UI skills",
+    detailTitle: "Building UI Blindfolded",
+    detailDescription: "A communication-heavy UI challenge testing accuracy and teamwork.",
+    details: [
+      { label: "Duration", value: "3 hours" },
+      { label: "Team Size", value: "2 members" },
+      { label: "Registration Fee", value: "₹125 (IEEE) / ₹175 (Non-IEEE)" },
+      { label: "Expected Teams", value: "20" },
+      { label: "Prize Pool", value: "₹2500" }
+    ]
+  },
+  {
+    number: "III",
+    label: "Technical",
+    title: "Project Expo",
+    description: "Showcase innovative real-world technical projects demonstrating practical applications",
+    detailTitle: "Project Expo",
+    detailDescription: "Present your ideas and compete with practical implementations.",
+    details: [
+      { label: "Duration", value: "3 hours" },
+      { label: "Registration Fee", value: "₹175 (IEEE) / ₹150 (Non-IEEE)" },
+      { label: "Expected Teams", value: "20" },
+      { label: "Prize Pool", value: "₹3000" }
+    ]
+  },
+  {
+    number: "IV",
+    label: "Workshop",
+    title: "Power BI Workshop",
+    description: "Hands-on workshop introducing interactive dashboards using Power BI",
+    detailTitle: "Power BI Workshop",
+    detailDescription: "Hands-on session on data visualization and analytics.",
+    details: [
+      { label: "Duration", value: "2 hours" },
+      { label: "Registration Fee", value: "Free (IEEE) / ₹150 (Non-IEEE)" },
+      { label: "Expected Participants", value: "100" },
+      { label: "Speaker", value: "Alumni" }
+    ]
+  },
+  {
+    number: "V",
+    label: "Technical",
+    title: "Mystery Tech Auction",
+    description: "Bid for tech tools and build a project under constraints",
+    detailTitle: "Mystery Tech Auction",
+    detailDescription: "Strategy meets development in this unique auction-based challenge.",
+    details: [
+      { label: "Duration", value: "6 hours" },
+      { label: "Team Size", value: "2-3 members" },
+      { label: "Registration Fee", value: "₹250 (IEEE) / ₹300 (Non-IEEE)" },
+      { label: "Expected Teams", value: "15" },
+      { label: "Prize Pool", value: "₹6000" }
+    ]
+  },
+  {
+    number: "VI",
+    label: "Technical",
+    title: "Treasure Hunt",
+    description: "Follow technical clues and puzzles to progress through stages",
+    detailTitle: "Technical Treasure Hunt",
+    detailDescription: "A fun and challenging technical hunt testing logic and teamwork.",
+    details: [
+      { label: "Duration", value: "3 hours" },
+      { label: "Team Size", value: "2-3 members" },
+      { label: "Registration Fee", value: "₹250 (IEEE) / ₹300 (Non-IEEE)" },
+      { label: "Expected Teams", value: "15" },
+      { label: "Prize Pool", value: "₹2500" }
+    ]
+  },
+  {
+    number: "VII",
+    label: "Technical",
+    title: "App Development",
+    description: "Design and develop applications that address real-world problems",
+    detailTitle: "App Development",
+    detailDescription: "Design and develop functional apps under constraints.",
+    details: [
+      { label: "Team Size", value: "2-3 members" },
+      { label: "Registration Fee", value: "₹125 (IEEE) / ₹175 (Non-IEEE)" },
+      { label: "Expected Teams", value: "20" },
+      { label: "Prize Pool", value: "₹2500" }
+    ]
+  },
+  {
+    number: "VIII",
+    label: "Workshop",
+    title: "DevOps Workshop",
+    description: "Learn practical DevOps concepts, integration, and deployment",
+    detailTitle: "DevOps Workshop",
+    detailDescription: "Practical introduction to modern development workflows.",
+    details: [
+      { label: "Duration", value: "2 hours" },
+      { label: "Registration Fee", value: "Free (IEEE) / ₹50 (Non-IEEE)" },
+      { label: "Expected Participants", value: "150" },
+      { label: "Speaker", value: "Alumni" }
+    ]
+  }
 ];
 
 
