@@ -8,34 +8,85 @@ import SmokeEffect from "./SmokeEffect";
 const events = [
 {
   number: "I",
-  label: "Technical",
-  title: "Code Forge",
-  description: "Competitive coding, hackathons, and algorithmic battles that test your technical mastery",
-  backDescription: "Push your limits with intense coding challenges, system design battles, and hands-on workshops led by industry veterans.",
-  detailTitle: "The Code Forge",
-  detailDescription: "Lines of code become weapons, algorithms become shields. Your team grinds through layers of logic, debugging under pressure, racing against the clock. Every solved problem unlocks a deeper challenge — the forge never cools, and only the sharpest minds emerge victorious.",
-  detailTagline: "The forge burns eternal..."
+  label: "Capture The Flag",
+  title: "Cyber CTF",
+  description: "Solve cybersecurity challenges in cryptography, web security, and forensics",
+  backDescription: "A fast-paced hacking competition testing real-world security skills.",
+  detailTitle: "Capture The Flag",
+  detailDescription: "Duration: 6 hours | Team Size: 3–4 | Expected Teams: 20",
+  detailTagline: "₹250 / ₹300 • Prize ₹6000"
 },
 {
   number: "II",
-  label: "Non-Tech",
-  title: "Creative Arena",
-  description: "Design thinking, management games, and creative showcases beyond the code",
-  backDescription: "Unleash your creativity through design sprints, case studies, quizzes, and team challenges. No code required — only vision and strategy.",
-  detailTitle: "The Creative Arena",
-  detailDescription: "Ideas clash like titans in an arena of pure imagination. From rapid-fire case studies to collaborative design sprints, your team navigates challenges that demand wit, persuasion, and strategic brilliance. Here, creativity is currency and innovation is your weapon.",
-  detailTagline: "Creativity cannot be contained..."
+  label: "Technical",
+  title: "UI Blindfolded",
+  description: "One designs, one codes — without seeing the UI",
+  backDescription: "A communication-heavy UI challenge testing accuracy and teamwork.",
+  detailTitle: "Building UI Blindfolded",
+  detailDescription: "Duration: 3 hours | Team Size: 2 | Expected Teams: 20",
+  detailTagline: "₹125 / ₹175 • Prize ₹2500"
 },
 {
   number: "III",
-  label: "Webinar",
-  title: "Digital Summit",
-  description: "Expert talks, panel discussions, and live Q&A sessions with industry leaders",
-  backDescription: "Join virtual sessions with tech pioneers sharing insights on AI, blockchain, cloud, and the future of technology.",
-  detailTitle: "The Digital Summit",
-  detailDescription: "Visionaries gather in the digital realm, sharing prophecies of technologies yet to come. From the depths of artificial intelligence to the heights of quantum computing, each session peels back the curtain on tomorrow's possibilities. Knowledge flows like data through fiber — infinite and illuminating.",
-  detailTagline: "The summit never sleeps..."
-}];
+  label: "Technical",
+  title: "Project Expo",
+  description: "Showcase innovative real-world technical projects",
+  backDescription: "Present your ideas and compete with practical implementations.",
+  detailTitle: "Project Expo",
+  detailDescription: "Duration: 3 hours | Expected Teams: 20",
+  detailTagline: "₹175 / ₹150 • Prize ₹3000"
+},
+{
+  number: "IV",
+  label: "Workshop",
+  title: "Power BI Workshop",
+  description: "Learn to build dashboards and insights using Power BI",
+  backDescription: "Hands-on session on data visualization and analytics.",
+  detailTitle: "Data Visualization using Power BI",
+  detailDescription: "Duration: 2 hours | Expected Participants: 150 | Speaker: Alumni",
+  detailTagline: "Free / ₹50"
+},
+{
+  number: "V",
+  label: "Technical",
+  title: "Mystery Tech Auction",
+  description: "Bid for tools and build under constraints",
+  backDescription: "Strategy meets development in this unique auction-based challenge.",
+  detailTitle: "Mystery Tech Auction",
+  detailDescription: "Duration: 6 hours | Team Size: 2–3 | Expected Teams: 15",
+  detailTagline: "₹250 / ₹300 • Prize ₹6000"
+},
+{
+  number: "VI",
+  label: "Technical",
+  title: "Technical Treasure Hunt",
+  description: "Solve clues and puzzles across multiple stages",
+  backDescription: "A fun and challenging technical hunt testing logic and teamwork.",
+  detailTitle: "Technical Treasure Hunt",
+  detailDescription: "Duration: 3 hours | Team Size: 2–3 | Expected Teams: 15",
+  detailTagline: "₹250 / ₹300 • Prize ₹2500"
+},
+{
+  number: "VII",
+  label: "Technical",
+  title: "App Development",
+  description: "Build real-world applications solving practical problems",
+  backDescription: "Design and develop functional apps under constraints.",
+  detailTitle: "App Development",
+  detailDescription: "Team Size: 2–3 | Expected Teams: 20",
+  detailTagline: "₹125 / ₹175 • Prize ₹2500"
+},
+{
+  number: "VIII",
+  label: "Workshop",
+  title: "DevOps Workshop",
+  description: "Learn CI/CD, deployment, and DevOps fundamentals",
+  backDescription: "Practical introduction to modern development workflows.",
+  detailTitle: "DevOps Workshop",
+  detailDescription: "Duration: 2 hours | Expected Participants: 150 | Speaker: Alumni",
+  detailTagline: "Free / ₹50"
+}
+];
 
 
 const EventSection = () => {
@@ -73,19 +124,33 @@ const EventSection = () => {
           </p>
         </motion.div>
 
-        {/* Cards */}
-        <div className="relative z-20 flex flex-wrap justify-center gap-8 md:gap-12 px-4">
-          {events.map((e, i) =>
-          <motion.div
-            key={e.number}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.15, duration: 0.5 }}>
-            
-              <EventCard event={e} onSelect={setSelectedEvent} />
-            </motion.div>
-          )}
+        {/* Categorized Cards */}
+        <div className="w-full relative z-20">
+          {Object.entries(events.reduce((acc, event) => {
+            if (!acc[event.label]) acc[event.label] = [];
+            acc[event.label].push(event);
+            return acc;
+          }, {})).map(([category, categoryEvents]) => (
+            <div key={category} className="mb-20 last:mb-0">
+              <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-primary mb-10 text-center text-glow flex items-center justify-center gap-4">
+                <span className="hidden md:block h-px w-24 bg-gradient-to-r from-transparent to-primary/60" />
+                {category}
+                <span className="hidden md:block h-px w-24 bg-gradient-to-l from-transparent to-primary/60" />
+              </h3>
+              <div className="flex flex-wrap justify-center gap-8 md:gap-12 px-4 max-w-[1200px] mx-auto w-full">
+                {categoryEvents.map((e, i) => (
+                  <motion.div
+                    key={`${e.number}-${i}`}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.15, duration: 0.5 }}>
+                    <EventCard event={e} onSelect={setSelectedEvent} />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Smoke */}
