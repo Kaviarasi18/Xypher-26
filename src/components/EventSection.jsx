@@ -5,11 +5,21 @@ import EventCard from "./EventCard";
 import EventDetail from "./EventDetail";
 import SmokeEffect from "./SmokeEffect";
 
+import ctfImg from "@/assets/CTF.png";
+import uiBlindfoldImg from "@/assets/ui_blindfold.png";
+import expoImg from "@/assets/project_expo.png";
+import powerbiImg from "@/assets/power_bi_workshop.png";
+import auctionImg from "@/assets/tech_auction.png";
+import huntImg from "@/assets/technical_treasurehunt.png";
+import appDevImg from "@/assets/app_dev.png";
+import devopsImg from "@/assets/dev_ops.png";
+
 const events = [
   {
     number: "I",
     label: "CTF",
     title: "Cyber CTF",
+    image: ctfImg,
     description: "Solve cybersecurity challenges in cryptography, web security, and forensics",
     detailTitle: "Capture The Flag",
     detailDescription: "A fast-paced hacking competition testing real-world security skills.",
@@ -25,6 +35,7 @@ const events = [
     number: "II",
     label: "Technical",
     title: "UI Blindfolded",
+    image: uiBlindfoldImg,
     description: "One designs verbally, one codes blindly — testing communication and UI skills",
     detailTitle: "Building UI Blindfolded",
     detailDescription: "A communication-heavy UI challenge testing accuracy and teamwork.",
@@ -40,6 +51,7 @@ const events = [
     number: "III",
     label: "Technical",
     title: "Project Expo",
+    image: expoImg,
     description: "Showcase innovative real-world technical projects demonstrating practical applications",
     detailTitle: "Project Expo",
     detailDescription: "Present your ideas and compete with practical implementations.",
@@ -54,6 +66,7 @@ const events = [
     number: "IV",
     label: "Workshop",
     title: "Power BI Workshop",
+    image: powerbiImg,
     description: "Hands-on workshop introducing interactive dashboards using Power BI",
     detailTitle: "Power BI Workshop",
     detailDescription: "Hands-on session on data visualization and analytics.",
@@ -68,6 +81,7 @@ const events = [
     number: "V",
     label: "Technical",
     title: "Mystery Tech Auction",
+    image: auctionImg,
     description: "Bid for tech tools and build a project under constraints",
     detailTitle: "Mystery Tech Auction",
     detailDescription: "Strategy meets development in this unique auction-based challenge.",
@@ -83,6 +97,7 @@ const events = [
     number: "VI",
     label: "Technical",
     title: "Treasure Hunt",
+    image: huntImg,
     description: "Follow technical clues and puzzles to progress through stages",
     detailTitle: "Technical Treasure Hunt",
     detailDescription: "A fun and challenging technical hunt testing logic and teamwork.",
@@ -98,6 +113,7 @@ const events = [
     number: "VII",
     label: "Technical",
     title: "App Development",
+    image: appDevImg,
     description: "Design and develop applications that address real-world problems",
     detailTitle: "App Development",
     detailDescription: "Design and develop functional apps under constraints.",
@@ -112,6 +128,7 @@ const events = [
     number: "VIII",
     label: "Workshop",
     title: "DevOps Workshop",
+    image: devopsImg,
     description: "Learn practical DevOps concepts, integration, and deployment",
     detailTitle: "DevOps Workshop",
     detailDescription: "Practical introduction to modern development workflows.",
@@ -124,6 +141,8 @@ const events = [
   }
 ];
 
+
+import TextType from "./TextType";
 
 const EventSection = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -145,19 +164,37 @@ const EventSection = () => {
             <div className="h-px w-16 bg-gradient-to-r from-transparent to-primary/60" />
             <span className="text-primary text-xs">◆</span>
             <div className="border border-primary/40 px-6 py-1.5">
-              <span className="font-rajdhani text-xs tracking-[0.3em] uppercase text-primary/80">
-                Choose Your Path
-              </span>
+              <TextType 
+                text="Choose Your Path" 
+                as="span"
+                className="font-rajdhani text-xs tracking-[0.3em] uppercase text-primary/80"
+                typingSpeed={25}
+                loop={false}
+                showCursor={true}
+                cursorCharacter="_"
+              />
             </div>
             <span className="text-primary text-xs">◆</span>
             <div className="h-px w-16 bg-gradient-to-l from-transparent to-primary/60" />
           </div>
-          <h2 className="font-cinzel text-4xl md:text-5xl font-bold text-foreground text-glow">
-            Event Categories
+          <h2 className="font-cinzel text-4xl md:text-5xl font-bold text-foreground text-glow min-h-[1.2em]">
+            <TextType 
+              text="Event Categories" 
+              typingSpeed={25}
+              loop={false}
+              showCursor={false}
+            />
           </h2>
-          <p className="font-rajdhani text-muted-foreground mt-3 text-lg">
-            Click a card to reveal what awaits within
-          </p>
+          <div className="font-rajdhani text-muted-foreground mt-3 text-lg min-h-[1.5em]">
+            <TextType 
+              text="Click a card to reveal what awaits within" 
+              typingSpeed={25}
+              initialDelay={1000}
+              loop={false}
+              showCursor={true}
+              cursorCharacter="_"
+            />
+          </div>
         </motion.div>
 
         {/* Categorized Cards */}
@@ -168,9 +205,14 @@ const EventSection = () => {
             return acc;
           }, {})).map(([category, categoryEvents]) => (
             <div key={category} className="mb-20 last:mb-0">
-              <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-primary mb-10 text-center text-glow flex items-center justify-center gap-4">
+              <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-primary mb-10 text-center text-glow flex items-center justify-center gap-4 min-h-[1.2em]">
                 <span className="hidden md:block h-px w-24 bg-gradient-to-r from-transparent to-primary/60" />
-                {category}
+                <TextType 
+                  text={category} 
+                  typingSpeed={25} 
+                  loop={false} 
+                  showCursor={false}
+                />
                 <span className="hidden md:block h-px w-24 bg-gradient-to-l from-transparent to-primary/60" />
               </h3>
               <div className="flex flex-wrap justify-center gap-10 lg:gap-16 px-4 max-w-[1300px] mx-auto w-full">

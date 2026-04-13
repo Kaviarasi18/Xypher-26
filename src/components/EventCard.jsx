@@ -16,12 +16,14 @@ import { motion } from "framer-motion";
 
 
 
+import TextType from "./TextType";
+
 const EventCard = ({ event, onSelect }) => {
-  const { number, label, title, description } = event;
+  const { number, label, title, description, image } = event;
 
   return (
     <motion.div
-      className="w-80 h-[440px] cursor-pointer group"
+      className="w-80 h-[580px] cursor-pointer group"
       onClick={() => onSelect(event)}
       whileHover={{ scale: 1.04, y: -8 }}
       transition={{ duration: 0.3 }}>
@@ -46,36 +48,49 @@ const EventCard = ({ event, onSelect }) => {
 
         {/* Number badge */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2">
-          <div className="bg-card border border-primary/50 px-5 py-2 mt-1">
-            <span className="font-cinzel text-lg text-primary font-bold">{number}</span>
+          <div className="bg-card border border-primary/50 px-4 py-1 mt-1">
+            <span className="font-cinzel text-base text-primary font-bold">{number}</span>
           </div>
         </div>
 
-        {/* Label */}
-        <div className="absolute top-20 left-1/2 -translate-x-1/2">
-          <div className="border border-primary/50 px-6 py-1.5 flex items-center gap-2">
-            <span className="text-primary text-[10px]">◆</span>
-            <span className="font-rajdhani text-sm tracking-[0.2em] uppercase text-primary font-semibold">
-              {label}
-            </span>
-            <span className="text-primary text-[10px]">◆</span>
-          </div>
+        {/* Dynamic Image Instead of Label */}
+        <div className="absolute top-14 left-1/2 -translate-x-1/2 z-10">
+          {image ? (
+            <div className="w-44 h-44 rounded-lg border-2 border-primary overflow-hidden shadow-[0_0_20px_hsla(var(--primary),0.7)] bg-background/60 flex items-center justify-center">
+              <img src={image} alt={title} className="w-full h-full object-contain drop-shadow-md" />
+            </div>
+          ) : (
+            <div className="border border-primary/50 px-6 py-1 flex items-center gap-2">
+              <span className="text-primary text-[10px]">◆</span>
+              <span className="font-rajdhani text-sm tracking-[0.2em] uppercase text-primary font-semibold">
+                {label}
+              </span>
+              <span className="text-primary text-[10px]">◆</span>
+            </div>
+          )}
         </div>
 
         {/* Title & description */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-8 pt-16">
-          <h3 className="font-cinzel text-xl text-foreground font-bold mb-3 text-center text-glow">
-            {title}
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-8 pt-[280px]">
+          <h3 className="font-cinzel text-lg md:text-xl text-foreground font-bold mb-3 text-center text-glow min-h-[1.5em] w-full">
+            <TextType 
+              text={title} 
+              typingSpeed={25} 
+              loop={false} 
+              startOnVisible={true}
+              showCursor={false}
+            />
           </h3>
-          <p className="font-rajdhani text-muted-foreground text-center text-base leading-relaxed">
-            {description}
-          </p>
-        </div>
-
-        {/* Choose button */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <div className="border border-primary/50 px-8 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span className="font-rajdhani text-sm uppercase tracking-[0.15em] text-primary">Choose</span>
+          <div className="font-rajdhani text-muted-foreground text-center text-sm md:text-base leading-relaxed min-h-[3em] w-full">
+            <TextType 
+              text={description} 
+              typingSpeed={25} 
+              initialDelay={500}
+              loop={false} 
+              startOnVisible={true}
+              showCursor={true}
+              cursorCharacter="_"
+            />
           </div>
         </div>
 
@@ -83,7 +98,6 @@ const EventCard = ({ event, onSelect }) => {
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-primary/10 to-transparent" />
       </div>
     </motion.div>);
-
 };
 
 export default EventCard;

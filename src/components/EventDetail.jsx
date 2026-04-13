@@ -1,11 +1,6 @@
 import { motion } from "framer-motion";
-
+import TextType from "./TextType";
 import SmokeEffect from "./SmokeEffect";
-
-
-
-
-
 
 const EventDetail = ({ event, onBack }) => {
   return (
@@ -45,10 +40,18 @@ const EventDetail = ({ event, onBack }) => {
 
       {/* Left controls */}
       <div className="absolute left-5 top-20 z-30 flex flex-col gap-3">
+        {/* Modern pill back button for mobile */}
         <button
           onClick={onBack}
-          className="w-10 h-10 rounded-full border border-primary/50 flex items-center justify-center text-primary hover:bg-primary/10 transition-colors">
-          
+          className="md:hidden flex items-center gap-3 border border-primary/50 px-6 py-2.5 rounded-full font-rajdhani uppercase tracking-[0.15em] text-xs text-primary hover:bg-primary/10 transition-colors border-glow bg-background/60 backdrop-blur-sm">
+          <span className="text-lg">‹</span>
+          Back
+        </button>
+
+        {/* Original circular back button for desktop only */}
+        <button
+          onClick={onBack}
+          className="hidden md:flex w-10 h-10 rounded-full border border-primary/50 items-center justify-center text-primary hover:bg-primary/10 transition-colors">
           ‹
         </button>
         <div className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary/50">
@@ -87,23 +90,32 @@ const EventDetail = ({ event, onBack }) => {
 
           {/* Title */}
           <motion.h1
-            className="font-cinzel text-4xl md:text-6xl font-bold text-foreground text-glow text-center mb-6"
+            className="font-cinzel text-4xl md:text-6xl font-bold text-foreground text-glow text-center mb-6 min-h-[1.26em]"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}>
             
-            {event.detailTitle}
+            <TextType 
+              text={event.detailTitle} 
+              typingSpeed={25} 
+              loop={false} 
+              startOnVisible={true}
+              showCursor={false}
+            />
           </motion.h1>
 
           {/* Description */}
-          <motion.p
-            className="font-rajdhani text-muted-foreground text-center text-lg md:text-xl leading-relaxed max-w-2xl mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.5 }}>
-            
-            {event.detailDescription}
-          </motion.p>
+          <div className="font-rajdhani text-muted-foreground text-center text-lg md:text-xl leading-relaxed max-w-2xl mb-8 min-h-[2em]">
+            <TextType 
+              text={event.detailDescription} 
+              typingSpeed={25} 
+              initialDelay={800}
+              loop={false} 
+              startOnVisible={true}
+              showCursor={true}
+              cursorCharacter="_"
+            />
+          </div>
 
           {/* Details Grid */}
           {event.details && (
@@ -135,7 +147,7 @@ const EventDetail = ({ event, onBack }) => {
 
           {/* Continue button */}
           <motion.button
-            className="flex items-center gap-3 border border-primary/50 px-10 py-3 rounded-full font-rajdhani uppercase tracking-[0.2em] text-sm text-primary hover:bg-primary/10 transition-colors border-glow"
+            className="hidden md:flex items-center gap-3 border border-primary/50 px-10 py-3 rounded-full font-rajdhani uppercase tracking-[0.2em] text-sm text-primary hover:bg-primary/10 transition-colors border-glow"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.5 }}
@@ -144,7 +156,7 @@ const EventDetail = ({ event, onBack }) => {
             <span className="w-8 h-8 rounded-full border border-primary/40 flex items-center justify-center">
               ▸
             </span>
-            Continue
+            Back
           </motion.button>
         </div>
 
@@ -155,7 +167,7 @@ const EventDetail = ({ event, onBack }) => {
           animate={{ x: 0, opacity: 1, rotate: 4 }}
           transition={{ delay: 0.2, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}>
           
-          <div className="w-72 h-[400px] relative rounded-lg border border-primary/40 bg-card overflow-hidden border-glow shadow-2xl">
+          <div className="w-72 h-[500px] relative rounded-lg border border-primary/40 bg-card overflow-hidden border-glow shadow-2xl">
             {/* Corner ornaments */}
             <div className="absolute top-3 left-3 w-5 h-5 border-t border-l border-primary/60" />
             <div className="absolute top-3 right-3 w-5 h-5 border-t border-r border-primary/60" />
@@ -172,31 +184,51 @@ const EventDetail = ({ event, onBack }) => {
             </div>
 
             {/* Number */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2">
-              <div className="bg-card border border-primary/50 px-4 py-1.5 mt-1">
-                <span className="font-cinzel text-base text-primary font-bold">{event.number}</span>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10">
+              <div className="bg-card border border-primary/50 px-3 py-1 mt-1">
+                <span className="font-cinzel text-sm text-primary font-bold">{event.number}</span>
               </div>
             </div>
 
-            {/* Label */}
-            <div className="absolute top-16 left-1/2 -translate-x-1/2">
-              <div className="border border-primary/50 px-5 py-1 flex items-center gap-2">
-                <span className="text-primary text-[8px]">◆</span>
-                <span className="font-rajdhani text-xs tracking-[0.2em] uppercase text-primary font-semibold">
-                  {event.label}
-                </span>
-                <span className="text-primary text-[8px]">◆</span>
-              </div>
+            {/* Dynamic Image Instead of Label */}
+            <div className="absolute top-12 left-1/2 -translate-x-1/2 z-10">
+              {event.image ? (
+                <div className="w-40 h-40 rounded-lg border-2 border-primary overflow-hidden shadow-[0_0_20px_hsla(var(--primary),0.7)] bg-background/60 flex items-center justify-center">
+                  <img src={event.image} alt={event.title} className="w-full h-full object-contain drop-shadow-md" />
+                </div>
+              ) : (
+                <div className="border border-primary/50 px-5 py-1 flex items-center gap-2">
+                  <span className="text-primary text-[8px]">◆</span>
+                  <span className="font-rajdhani text-xs tracking-[0.2em] uppercase text-primary font-semibold">
+                    {event.label}
+                  </span>
+                  <span className="text-primary text-[8px]">◆</span>
+                </div>
+              )}
             </div>
 
             {/* Card content */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center px-6 pt-12">
-              <h3 className="font-cinzel text-lg text-foreground font-bold mb-2 text-center text-glow">
-                {event.title}
+            <div className="absolute inset-0 flex flex-col items-center justify-center px-6 pt-[190px]">
+              <h3 className="font-cinzel text-lg text-foreground font-bold mb-2 text-center text-glow min-h-[1.5em] w-full">
+                <TextType 
+                  text={event.title} 
+                  typingSpeed={25} 
+                  loop={false} 
+                  startOnVisible={true}
+                  showCursor={false}
+                />
               </h3>
-              <p className="font-rajdhani text-muted-foreground text-center text-sm leading-relaxed">
-                {event.description}
-              </p>
+              <div className="font-rajdhani text-muted-foreground text-center text-sm leading-relaxed min-h-[3em] w-full">
+                <TextType 
+                  text={event.description} 
+                  typingSpeed={25} 
+                  initialDelay={600}
+                  loop={false} 
+                  startOnVisible={true}
+                  showCursor={true}
+                  cursorCharacter="_"
+                />
+              </div>
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-primary/10 to-transparent" />
@@ -205,7 +237,7 @@ const EventDetail = ({ event, onBack }) => {
       </div>
 
       {/* Smoke - denser on detail page */}
-      <SmokeEffect density={80} heightClass="h-96" />
+      <SmokeEffect density={100} />
     </motion.div>);
 
 };
